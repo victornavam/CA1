@@ -4,24 +4,35 @@ const hostname = '0.0.0.0';
 const port = process.env.PORT || 3000;
 const projectsController = require ('./controllers/projects')();
 const issuesController = require ('./controllers/issues')();
-const app = module.exports = express ();
+const usersController = require ('./controllers/users')();
+const comController = require ('./controllers/com')();
+const app = (module.exports = express ());
 // logging
 app.use((req, res, next) => {
 // Display log for requests
 console.log('[%s] %s -- %s', new Date (), req.method, req.url);
 next();
 });
-app.use(bodyParser.json())
-// Get all books
+app.use(bodyParser.json());
+
 app.get('/issues', issuesController.getController);
-// Add a book
 app.post('/issues', issuesController.postController);
-// A book
 app.get('/issues/:id', issuesController.getById);
-// Get all authors
+app.get("/issues/project_id/:project_id", issuesController.getByProject);
+
+app.get("/issues/comments", comController.getController);
+app.get("/issues/comments/:id", comController.getCommentID);
+
 app.get('/projects', projectsController.getController);
-// Add a author
+app.get('/projects/:id', projectsController.getById);
 app.post('/projects', projectsController.postController);
+
+app.get('/users', usersController.getController);
+app.get('/users/:id', usersController.getById);
+app.post('/users', usersController.postController);
+
+
+
 app.listen(port, hostname, () => {
 console.log(`Server running at http://${hostname} : ${port} /`);
 });

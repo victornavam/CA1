@@ -1,21 +1,36 @@
 const db = require( '../db')();
+const COLLECTION = "issues" ;
 module.exports = () => {
-const get = (id = null) => {
+const get = async (id = null) => {
 console.log('inside issues model');
 if (!id) {
-return db.issues;
+    const issues = await db.get(COLLECTION);
+return issues;
 }
-return db.issues[parseInt(id) - 1 ];
+
+const issue = await db.get(COLLECTION, {id});
+return issue;
 }
-const add = (name, author) => {
-return db.issues.push({
-id: db.issues.length + 1,
+const get1 = async (project_id = null) => {
+    if (!project_id) {
+        const proj = await db.get1(COLLECTION);
+    return proj;
+    }
+    const proj = await db.get1(COLLECTION, {project_id});
+return proj;
+}
+const add = async(name, author) => {
+const issuesCount = await db.count( COLLECTION );
+const results = await db.add( COLLECTION , {
+id: issuesCount + 1,
 name: name,
 author: author
 });
+return results.result;
 }
 return {
 get,
-add
+add,
+get1,
 }
 };
