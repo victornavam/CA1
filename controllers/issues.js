@@ -1,20 +1,39 @@
 const issues = require('../models/issues.js')();
 module.exports = () => {
 const getController = async (req, res) => {
-res.json(await issues.get());
+    const {issueslist, error}= await issues.get()
+    if(erro){
+        return res.status(500).json({ error })
+    }
+res.json( {issues: issueslist});
 }
 const getBySlug = async(req, res) => {
-res.json(await issues.get(req.params.issueNumber));
+    const {issueslist, error} = await issues.get(req.params.issueNumber)
+    if(error){
+        return res.status(500).json({ error })
+    }
+res.json( {issues: issueslist} );
 }
 const getBySlugCom = async(req, res) => {
-res.json(await issues.get2(parseInt(req.params.comments)));
+    const {issueslist, error} = await issues.get2(parseInt(req.params.comments))
+    if(error){
+        return res.status(500).json({ error })
+    }
+res.json( {issues: issueslist} );
 }
 const getByProject = async(req, res) => {
-res.json(await issues.get(parseInt(req.params.project_id)));
+    const {issueslist, error} = await issues.get(parseInt(req.params.project_id))
+    if(error){
+        return res.status(500).json({ error })
+    }
+res.json( {issues: issueslist});
 }
 const populatedController = async (req, res) => {
-res.json( await issues.aggregateWithProjects());
-};
+    const {issueslist, error} = await issues.aggregateWithProjects()
+    if(error){
+        return res.status(500).json({ error })
+    }
+    res.json( {issues: issueslist});};
 
 const postController = async(req, res) => {
 const issueNumber = req.body.issueNumber;

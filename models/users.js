@@ -7,8 +7,14 @@ module.exports = () => {
         console.log( " 01: Missing key" );
         return null;
         }
-    const users = await db.get(COLLECTION, {key});
-        if ( users.length !== 1 ) {
+        let users
+        try{
+        users = await db.get(COLLECTION, {key});
+        }catch(ex){
+            console.log("Exception users::getByKey")
+            return null
+        }
+    if ( users.length !== 1 ) {
         console.log( " 02: Bad key" );
         return null;
         }
@@ -18,12 +24,20 @@ module.exports = () => {
 const get = async (email = null) => {
 console.log('inside users model');
 if (!email) {
+    try{
 const users = await db.get(COLLECTION);
-return users;
+return { userslist: users };
+    }catch(ex){
+        return {error: ex}
     }
-    const name = await db.get(COLLECTION, { email });
+}
+try{
+const name = await db.get(COLLECTION, { email });
         return name;
+    }catch(ex){
+        return{error: ex}
     }
+}
 const add = async(name, email, usertype, key) => {
     const nameCount = await db.count( COLLECTION );
     const results = await db.add( COLLECTION, {

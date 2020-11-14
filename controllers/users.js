@@ -5,10 +5,18 @@ module.exports=() => {
 
 
 const getController = async (req, res) => {
-res.json(await users.get());
+    const {userslist, error} = await users.get()
+    if(error){
+        return res.status(500).json({ error })
+    }
+res.json( {users: userslist} );
 }
 const getByEmail = async ( req , res ) => {
-res.json(await users.get((req.params.email)));
+    const {userslist, error} = await users.get((req.params.email))
+    if(error){
+        return res.status(500).json({ error }) 
+    }
+    res.json( {users: userslist} );
 }
 const postController = async(req, res) => {
 const name = req.body.name;

@@ -25,17 +25,28 @@ module.exports = () => {
 const get = async (issueNumber = null) => {
 console.log('inside issues model');
 if (!issueNumber) {
+    try{
     const issues = await db.get(COLLECTION);
-return issues;
+    return{ issueslist: issues };
+    }catch(ex){
+        return {error: ex}
+    }
 }
-
+try{
 const title = await db.get(COLLECTION, {issueNumber});
 return title;
+} catch(ex){
+    return {error: ex}
+}
 }
 const get1 = async (project_id = null) => {
     if (!project_id) {
+        try{
         const issues = await db.get(COLLECTION);
-    return issues;
+        return { issueslist: issueslist};
+        }catch(ex){
+            return {error: ex}
+        }
     }
     const proj = await db.get(COLLECTION, {project_id});
 return proj;
@@ -44,13 +55,20 @@ return proj;
 const get2 = async (id = null) => {
     console.log('inside issues model');
     if (!id) {
+        try{
         const issues = await db.get(COLLECTION);
-    return issues;
+    return { issueslist: issues };
+    }catch(ex){
+        return {error: ex}
     }
-    
+}
+try{
     const text = await db.get(COLLECTION, {id});
-    return text;
-    }
+        return text;
+    }catch(ex){
+        return{error: ex}
+    }   
+    };
 const add = async(issueNumber, title, description, status, project_id) => {
 const issuesCount = await db.count( COLLECTION );
 const results = await db.add( COLLECTION , {

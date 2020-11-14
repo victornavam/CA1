@@ -39,9 +39,18 @@ next();
 });
 
 app.use(bodyParser.json());
-app.get("/", (req, res) => {
-res.json({
-hello: "Fworld",
+const path = require('path');
+app.set('views', path.join(__dirname, '/views'));
+app.set('view engine', 'ejs');
+const projects = require('./models/projects')();
+app.get("/", async (req, res) => {
+    const {projectslist} = await projects.get();
+    console.log(projectslist);
+res.render('index',{
+    title: "Fworld",
+    heading: "H World",
+    text: "this the text",
+    projects: projectslist
 });
 });
 app.get('/issues', issuesController.getController);
