@@ -1,20 +1,24 @@
 **BUG TRACKER**
 
 
-**Table of Contents**
+## Table of contents
+* [General info](#general-info)
+* [How to set it up](#How-to-set-it-up)
+* [Technologies used](#Technologies-used)
+* [Example usage](#Example-usage)
+* [Changelog](#Changelog)
+* [Roadmap](#Roadmap)
+* [Author](#Author)
 
-[TOCM]
 
-[TOC]
-
-# General info
+## General info
 
 This Aplication was created for academic proposes
 The aplication manage issues of projects.
 Can add more projects, issues, users and comments of each issue.
 Also can be update the status of each BUG.
 
-# How to set it up
+## How to set it up
 
 javascript
 npm install nodejs
@@ -27,7 +31,7 @@ set env variable of mongodb "MONGO_URI"
 App Demo:
 Heroku link: https://evening-cove-69899.herokuapp.com/
 
-# Technologies used
+## Technologies used
 - javascript
 - mongodb
 - nodejs
@@ -40,17 +44,19 @@ Heroku link: https://evening-cove-69899.herokuapp.com/
 - Robo 3T
 - Postman
 
-# Example usage
+## Example usage
 
 [![ruta.jpg](https://github.com/victornavam/CA1/blob/master/ruta.JPG?raw=true "ruta.jpg")](https://github.com/victornavam/CA1/blob/master/ruta.JPG "ruta.jpg")
 
-# Changelog
+## Changelog
 - 03/11/2020 Begin Project
 - 12/11/2020 Error Control
 - 14/11/2020 Readme
 
-# Roadmap
+## Roadmap
 ### Flowchart
+
+[![Flowchart.JPG](https://github.com/victornavam/CA1/blob/master/Flowchart.JPG?raw=true "Flowchart.JPG")](https://github.com/victornavam/CA1/blob/master/ "Flowchart.JPG")
 
 ```flow
 st=>start: User Login
@@ -74,7 +80,7 @@ cond2(no)->op2
 op5(right)->op4
 
 ```
-# Author
+## Author
 - **Ing. Victor Nava**
 
 

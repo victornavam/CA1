@@ -18,7 +18,10 @@ const postController = async(req, res) => {
 const id = req.body.id;
 const text = req.body.text;
 const author = req.body.author;
-const result = await users.add(id, text, author);
+const {result, error} = await comments.add(id, text, author);
+if(error){
+    return res.status(500).json({ error }) 
+}
 res.json(result);
 }
 return {

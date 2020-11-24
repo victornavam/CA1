@@ -2,7 +2,7 @@ const issues = require('../models/issues.js')();
 module.exports = () => {
 const getController = async (req, res) => {
     const {issueslist, error}= await issues.get()
-    if(erro){
+    if(error){
         return res.status(500).json({ error })
     }
 res.json( {issues: issueslist});
@@ -42,6 +42,7 @@ const description = req.body.description;
 const status = req.body.status;
 const project_id = req.body.project_id;
 const result = await issues.add(issueNumber, title, description, status, project_id);
+
 res.json(result);
 }
 return {

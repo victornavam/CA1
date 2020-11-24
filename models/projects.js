@@ -30,7 +30,19 @@ const name = await db.get(COLLECTION, { slug });
     return {error: ex}
 }
 };
+
 const add = async(name, slug, description) => {
+    if (name != null, slug != null, description != null){
+        let projects;
+        try{
+            projects = await get(slug);
+        }catch(ex){
+            console.log("Its NUll");
+            return{ex};
+        }
+        if(projects.length === 0){
+            
+        try{
     const nameCount = await db.count( COLLECTION );
     const results = await db.add( COLLECTION, {
 
@@ -40,8 +52,14 @@ slug: slug,
 description: description,
 
 });
-return results.result;
-};
+return (results.result ) ;
+        }catch(ex){
+        console.log("error");
+        return{error: ex};
+        }
+        }
+    }
+}
 const aggregateWithIssues = async () => {
     try{
     const projects = await db.aggregate(COLLECTION, LOOKUP_ISSUES_PIPELINE );
