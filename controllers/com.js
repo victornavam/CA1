@@ -15,15 +15,18 @@ const getCommentID = async ( req , res ) => {
     res.json( {comments: commentslist} );
 }
 const postController = async(req, res) => {
-const id = req.body.id;
-const text = req.body.text;
-const author = req.body.author;
-const {result, error} = await comments.add(id, text, author);
-if(error){
-    return res.status(500).json({ error }) 
+    const id = req.body.id;
+    const text = req.body.text;
+    const author = req.body.author;
+    try{
+        const {result, error} = await comments.add(id, text, author);
+        res.json(result);
+    }catch(ex){
+        console.log("Error")
+        return null;
+        }
 }
-res.json(result);
-}
+
 return {
 getController,
 postController,

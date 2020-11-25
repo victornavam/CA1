@@ -22,11 +22,10 @@ const comment = await db.get(COLLECTION, { id });
 const add = async(id, text, author) => {
     const textCount = await db.count( COLLECTION );
     const results = await db.add( COLLECTION, {
-
-id: textCount + 1 ,
-id: id,
-text: text,
-author: author,
+    id: textCount + 1 ,
+    id: id,
+    text: text,
+    author: author,
 });
 return results.result;
 }

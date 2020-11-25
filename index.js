@@ -46,11 +46,38 @@ const projects = require('./models/projects')();
 app.get("/", async (req, res) => {
     const {projectslist} = await projects.get();
     console.log(projectslist);
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'notificationbugtracker',
+        pass: 'Ireland4321'
+      }
+    });
+    
+    var mailOptions = {
+      from: 'notificationbugtracker@gmail.com',
+      to: 'vhnm17@hotmail.com',
+      subject: 'Notification',
+      text: 'User IN!'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+    
+    
 res.render('index',{
     title: "Fworld",
     heading: "H World",
     text: "this the text",
     projects: projectslist
+    
 });
 });
 app.get('/issues', issuesController.getController);

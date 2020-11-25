@@ -36,15 +36,21 @@ const populatedController = async (req, res) => {
     res.json( {issues: issueslist});};
 
 const postController = async(req, res) => {
-const issueNumber = req.body.issueNumber;
-const title = req.body.title;
-const description = req.body.description;
-const status = req.body.status;
-const project_id = req.body.project_id;
-const result = await issues.add(issueNumber, title, description, status, project_id);
-
-res.json(result);
+    const issueNumber = req.body.issueNumber;
+    const title = req.body.title;
+    const description = req.body.description;
+    const status = req.body.status;
+    const project_id = req.body.project_id;
+    try{
+        const result = await issues.add(issueNumber, title, description, status, project_id);
+        res.json(result);
+    }catch(ex){
+            console.log("Error")
+            return null;
+        }
 }
+
+
 return {
 getController,
 postController,

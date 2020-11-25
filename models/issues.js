@@ -100,8 +100,12 @@ return (results.result ) ;
     } 
 }
 const aggregateWithProjects = async () => {
+    try{
     const issues = await db.aggregate(COLLECTION, LOOKUP_PROJECTS_PIPELINE );
     return issues;
+    }catch(ex){
+        return {error: ex}
+    }
 }
 return {
 get,

@@ -25,13 +25,19 @@ const getBySlug = async (req, res ) => {
 res.json( {projects: projectslist} );
 }
 const postController = async(req, res) => {
-const name = req.body.name;
-const slug = req.body.slug;
-const description = req.body.description;
-const result = await projects.add(name, slug, description);
-
-res.json(result);
+    const name = req.body.name;
+    const slug = req.body.slug;
+    const description = req.body.description;
+    try{
+        const result = await projects.add(name, slug, description);
+        res.json(result);
+        }catch(ex){
+            console.log("Error")
+            return null;
+        }
 }
+
+
 return {
 getController,
 postController,

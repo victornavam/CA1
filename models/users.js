@@ -24,14 +24,14 @@ module.exports = () => {
 }
 
 const get = async (email = null) => {
-console.log('inside users model');
+    console.log('inside users model');
     if (!email ) {
     const users = await db.get(COLLECTION);
     return users;
-        }
-        const name = await db.get(COLLECTION, { email });
-            return name;
-        }
+      }
+    const name = await db.get(COLLECTION, { email });
+    return name;
+}
 
 
 const add = async(name, email, usertype, key) => {
@@ -44,22 +44,19 @@ const add = async(name, email, usertype, key) => {
             return{ex};
         }
         if(users.length === 0){
-            
         try{
-
             const nameCount = await db.count( COLLECTION );
             const results = await db.add( COLLECTION, {
-
-        id: nameCount + 1 ,
-        name: name,
-        email: email,
-        usertype: usertype,
-        key: key,
+            id: nameCount + 1 ,
+            name: name,
+            email: email,
+            usertype: usertype,
+            key: key,
         });
-        return (results.result ) ;
+            return (results.result ) ;
         }catch(ex){
-        console.log("error");
-        return{error: ex};
+            console.log("error");
+            return{error: ex};
         }
         }
     } 
