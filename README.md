@@ -13,20 +13,24 @@
 
 ## General info
 
-This Aplication was created for academic proposes
-The aplication manage issues of projects.
+This Application was created for academic purposes
+The application manage issues of projects.
 Can add more projects, issues, users and comments of each issue.
 Also can be update the status of each BUG.
 
 ## How to set it up
 
-javascript
-npm install nodejs
-npm install express
-npm install -- save mongodb
-npm install heroku
-npm install dotenv
-set env variable of mongodb "MONGO_URI"
+- javascript
+- npm install nodejs
+- npm install express
+- npm install -- save mongodb
+- npm install heroku
+- npm install dotenv
+- set env variable of mongodb "MONGO_URI"
+- npm install nodemailer
+- npm install docker
+- npm install nodemon
+- npm install ejs
 
 App Demo:
 Heroku link: https://evening-cove-69899.herokuapp.com/
@@ -52,13 +56,15 @@ Heroku link: https://evening-cove-69899.herokuapp.com/
 - 03/11/2020 Begin Project
 - 12/11/2020 Error Control
 - 14/11/2020 Readme
+- 24/11/2020 Mail Notification
+- 25/11/2020 Docker
 
 ## Roadmap
 ### Flowchart
 
 [![Flowchart.JPG](https://github.com/victornavam/CA1/blob/master/Flowchart.JPG?raw=true "Flowchart.JPG")](https://github.com/victornavam/CA1/blob/master/ "Flowchart.JPG")
 
-```flow
+`flow
 st=>start: User Login
 op=>operation: Login Operation
 cond=>condition: Yes or No?
@@ -79,7 +85,7 @@ cond2(yes)->op3->op5
 cond2(no)->op2
 op5(right)->op4
 
-```
+`
 ## Author
 - **Ing. Victor Nava**
 
